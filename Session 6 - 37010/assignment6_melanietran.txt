@@ -1,0 +1,61 @@
+#Melanie Tran 
+#MSCA 37010
+#Homework 6 - 3.7 (1-3)
+
+#Q1
+sentence = "The whole Christmas tree."
+
+#Find the longest word 
+max_len = -1
+for word in sentence.split(): 
+    if len(word) > max_len: 
+        max_len = len(word) 
+        longest = word 
+        longest_length = len(longest)
+
+#Create tree 
+for x in sentence.split():
+    counter = 1
+    for letter in x:
+        a = (letter *counter)*2
+        print(a.center(longest_length*2))
+        counter +=1
+
+
+
+#Q2
+answer_range = list(range(1,10))
+
+x = 123456
+list_x = [int(digit) for digit in str(x)]
+answer = sum(list_x)
+
+while answer not in answer_range: 
+    list_x = [int(digit) for digit in str(answer)]
+    answer = sum(list_x)
+print(answer)
+
+
+
+
+#Q3
+s = 'OMGOOOOOMMMMMMGGG'
+
+#Find change_idx
+change_idx = []
+for index in range(0,len(s)-1): 
+    if s[index] != s[index + 1]:
+        change_idx.append(index + 1)
+    else: 
+        continue
+
+#Find longest sequence
+if change_idx: 
+    change_idx.insert(0,0) #include first number
+    change_idx.append(len(s)) #include last number
+    longest = max([change_idx[i+1]-change_idx[i] for i in range(len(change_idx)-1)])
+    change_idx = change_idx[1:-1]
+else: 
+    print("Change_idx is empty.")
+
+f'The longest sequence is {longest}.'

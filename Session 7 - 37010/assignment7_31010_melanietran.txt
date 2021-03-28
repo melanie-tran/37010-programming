@@ -1,0 +1,78 @@
+#Melanie Tran
+#MSCA 31010
+#Homework 7 
+
+##Q1
+#Create alphabet dictionary
+alphabet_list = list("abcdefghijklmnopqrstuvwxyz")
+alpha_dict = {alphabet_list[x-1]:x for x in range(1, (len(alphabet_list)+1), 1)}
+alpha_dict
+
+#test string
+s = "Isn't it amazing?"
+answer = 0
+for letter in s:
+    if letter.lower() in alpha_dict:
+        answer+=alpha_dict[letter.lower()]
+    else:
+        answer-=1
+answer
+
+
+
+
+
+
+#Q2 
+
+#create dictionaries 
+morse_code = {'a': '.-'  , 'b': '-...', 'c': '-.-.', 'd': '-..' ,
+              'e': '.'   , 'f': '..-.', 'g': '--.' , 'h': '....',
+              'i': '..'  , 'j': '.---', 'k': '-.-' , 'l': '.-..',
+              'm': '--'  , 'n': '-.'  , 'o': '---' , 'p': '.--.',
+              'q': '--.-', 'r': '.-.' , 's': '...' , 't': '-'   ,
+              'u': '..-' , 'v': '...-', 'w': '.--' , 'x': '-..-',
+              'y': '-.--', 'z': '--..'}
+
+morse_decode = {v: k for k, v in morse_code.items()}
+morse_decode
+
+#secret message
+secret_msg = '.- ..-.  .. ...  ... .... --- .-. -  --- ..-.  .-- .- - . .-.'
+
+#code the message
+msg = ""
+for x in secret_msg.split(' '):
+    if x in morse_decode:
+        msg += morse_decode[x]
+    else:
+        msg += ' '
+print(msg)
+
+#reply
+reply = "roger able fox"
+
+reply_list = []
+for x in list(reply):
+    if x == " ":
+        reply_list.append(" ")
+    else: 
+        reply_list.append(morse_code[x] + " ")
+reply_list
+
+secret_reply = ""
+for x in reply_list:
+    secret_reply+=x
+print(secret_reply)
+
+#TEST
+secret_msg = secret_reply
+
+#TEST - code the message
+test = ""
+for x in secret_msg.split(' '):
+    if x in morse_decode:
+        test += morse_decode[x]
+    else:
+        test += ' '
+print(test)

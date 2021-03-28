@@ -1,0 +1,65 @@
+#Do R Lecture 3 Exercises Q4 (matrix multiplication) and Q7 (duplicate).
+#Melanie Tran
+#MSCA 37010
+
+#Q4 (matrix multiplication)
+A <- matrix(1:8, 2, 4)
+B <- matrix(1:12, 4, 3)
+
+AB <- matrix(0,nrow(A),ncol(B))
+for (x in 1:nrow(A)) { 
+  for (y in (1:ncol(B))) {
+    for (z in 1:ncol(A)) { 
+      AB[x,y] <- AB[x,y] + (A[x,z] * B[z,y])
+    }
+  }
+}
+AB
+
+#danny- ignore, these are just my notes 
+#conceptualize
+
+a.row <- nrow(A)
+a.col <- ncol(A)
+b.row <- nrow(B)
+b.col <- ncol(B)
+
+A[1,1:a.col] #first row of a 
+A[2,1:a.col] #second row of a 
+
+B[1:b.row,1] #first col of b
+B[1:b.row,2] #second col of b
+B[1:b.row,3] #third col of b
+
+AB[1,1] <- (sum(A[1,1:a.col] * B[1:b.row,1])) #assign for 1,1
+AB[1,2] <- (sum(A[1,1:a.col] * B[1:b.row,2])) #assign for 1,2
+
+#end conceptualize
+
+
+#Q7 (duplicate)
+
+x <- c(3, -7, 6, 3, 1, -7)
+
+answer <- FALSE #init
+for(i in 1:length(x)){
+  for(value in x[-i]){ #x[-i] == all values except itself (x[i])
+    if(x[i] == value){ #if x[i] == to value, ex. x[1] == x[3]
+      answer <- TRUE
+      break
+    }
+  } 
+  if (answer) { #if answer is TRUE, break out of loop 
+    break
+  }
+}
+answer
+
+
+#test values
+x<- c(1,2,3,4,5)
+x <- c(1,1)
+x <- c(0,1,2,3,4,5,-23)
+
+
+

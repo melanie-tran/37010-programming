@@ -1,0 +1,89 @@
+---
+title: "Assignment - 3 - 37010"
+author: "Melanie Tran"
+date: "10/30/2020"
+output:
+  word_document: default
+  html_document: default
+---
+
+Do Lecture 3 Exercises Q1 to Q3 i.e. factorial, palindrome, and prime number.
+
+
+1) The factorial of a natural number n is defined as n!=n×(n−1)×(n−2)×⋯×1. Moreover, we define 0!=1. Write an R program that takes a non-negative integer n and computes its factorial n!. Do not use any R’s built-in function such as factorial().
+```{r}
+
+#pos numbers 
+n <- 5
+x <- c(1:n)
+answer <- 1
+
+if (n == 0) { 
+  answer <- 1
+  } else {
+    for (i in x) {
+      answer <- answer * i
+  }
+}
+answer
+
+```
+2) A palindrome is a sequence of characters which reads the same forward or backward. For example, the word “radar”. Write an R program that takes a string and checks if it is a palindrome. Do not make any copy of the sequence of characters. Do not attempt to reverse the sequence of characters. Do not use any R’s built-in function such as rev(), all(), or any(). (Hint: Use strsplit(s, "")[[1]] to split a string into a vector of characters.)
+
+```{r}
+s <- "radar"
+#test: s <- "Eva, Can I Stab Bats In A Cave?"
+#test: s <- "melanie!!"
+#test:s <- "hi ih hi ihx"
+
+clean_string <- tolower(gsub(" ", "", gsub("[^[:alnum:] ]", "", s)))
+
+split_string <- strsplit(clean_string, "")[[1]]
+original_string <- paste(c(split_string), collapse = "")
+
+
+#initialize
+i <- length(split_string)
+reversed_string <- c()
+
+#reverse the string
+while (i > 0) { 
+  letter <- split_string[i]
+  reversed_string <- append(reversed_string,letter)
+  i <- i - 1
+}
+
+#check if palindrome
+if ((paste(c(reversed_string), collapse = "")) == original_string) { 
+  print("THIS IS A PALINDROME!")
+  } else { 
+  print("This is not a palindrome.")
+}
+
+```
+3) A prime number is a natural number greater than 1 that is not divisible by other numbers except for 1 and itself. Write an R program that takes a natural number n and checks if it is a prime number. Do not use any R’s built-in function such as all() or any(). (Hint: Check if n is divisible by any of 2,…,n−1. Actually, is it necessary to check all of them?)
+```{r}
+
+n <- 1249
+i <- 999
+
+while (i > 1) { 
+  if (n %% i == 0 && i != n) {
+    is.prime <- FALSE
+    break
+  } else { 
+      i <- i - 1
+      is.prime <- TRUE
+  }
+}
+is.prime
+
+if (is.prime == TRUE) { 
+  cat(n, "is a prime number.")
+  } else { 
+  cat(n, "is NOT a prime number.")
+}
+
+```
+
+

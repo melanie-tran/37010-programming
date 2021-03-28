@@ -1,0 +1,53 @@
+#question 1 
+
+d <- 6
+m <- matrix(1:(d*d), d, d)
+# ... Skipped code ...
+m
+
+d <- 6
+m <- matrix(1:(d*d), d, d)
+for(a in 2:nrow(m)) {
+  for (b in 1:ncol(m)) {
+    if (m[a,b] < diag(m)[a]) {
+      m[a,b] <- 0
+    }
+  } 
+}
+m
+
+#question 2 
+
+v <- 0
+y <- c(-1, 0, 1)
+answer <- NULL
+
+for (num in y) {
+  if (v == num) {
+    answer <- TRUE
+    break
+  } else if (v != num) {
+    answer <- FALSE
+  }
+} 
+answer
+
+
+#question 3
+
+x <- c(3, 0, -2, 0)
+y <- c(-1, 0, 1)
+answer <- logical(4)
+i <- 1
+
+
+for (value in x) {
+  if ((value == y[1]) | (value == y[2]) | (value == y[3])) {
+    answer[[i]] <- TRUE
+  } else {
+    answer[[i]] <- FALSE
+  }
+  i <- i + 1
+}
+answer
+

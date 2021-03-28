@@ -1,0 +1,124 @@
+---
+title: 'Assignment #1 - MSCA 37010'
+author: "Melanie Tran"
+date: "10/14/2020"
+output:
+  word_document: default
+  html_document: default
+---
+
+## 1.6 Homework ## 
+
+**Question 1.** 
+Without executing the code, can you tell what the value of answer is? Now execute the code. What is the value of answer? Explain why. In particular, it does not compute the average of the positive numbers in x. Write code to compute it.
+
+```{r}
+x <- c(0.07, -0.42, 0.48, -0.14, 0.20, -0.44, 0.27, 0.05)
+answer <- mean(x > 0)
+answer
+ 
+"Due to order of operations (syntax), the code does not compute the average of the positive numbers in x." 
+
+#write code to compute the mean of positive numbers in x
+pos_x <- x[which(x > 0)]
+mean(pos_x)
+```
+
+
+**Question 2.**
+Execute the following code and understand what is going on.
+
+```{r, echo = FALSE}
+x <- 1:10
+dim(x) <- c(2, 5)
+dim(x) <- c(5, 2)
+dim(x) <- NULL
+
+"The dim() function allows you to retrieve or set the dimension of an object (x). X is a list of integers from 1 to 10. Using dim(), we can present the list of integers of x in a different form of a vector. For c(2,5), x is presented in 2 rows and 5 columns. For c(5,2) x is presented in 5 rows and 2 columns. For NULL, x is presented in its original state."
+```
+
+**Question 3**
+Write an R script that takes a number score between 0 and 100 and stores the corresponding letter grade in the letter.grade variable according to the following table
+
+```{r}
+library(dplyr)
+score <- 83
+letter.grade <- c("A", "B","C","D","E","F")
+
+if (between(score, 0, 49)) {
+  print(letter.grade[6])
+} else if (between(score, 50, 60)) {
+  print(letter.grade[5])
+} else if (between(score, 61, 70)) {
+  print(letter.grade[4])
+} else if (between(score, 71, 79)) {
+  print(letter.grade[3])
+} else if (between(score, 80, 89)) {
+  print(letter.grade[2])
+} else if (between(score, 90, 100)) {
+  print(letter.grade[1])
+} else
+  print("The score is out of bounds 0-100.")
+```
+**Question 4.**
+Write an R script that takes a vector x of 3 numbers and stores the 3 numbers in ascending order in the answer variable. Note that you should only use IF statements and comparisons but not any built-in R function e.g. min(), max(), sort(), order(), rank(). (Hint: Test your code with various values of x to ensure it works correctly in all cases.)
+
+```{r}
+#test
+x <- c(-5, 1, -20)
+x <- c(1000, 50, 0)
+x <- c(-23, 16, 5)
+x <- c(-80, -2, -10)
+x <- c(0.5, -98, 100)
+x <- c(3, 7, -2)
+x <- c(0,0,3)
+x <- c(1,3, 1)
+x <- c(6, 4, 4)
+x <- c(5,-100,-100)
+x <- c(1, 1, 1)
+x <- c(0.72, 0.72, -1)
+x <- c(-1, 0.5, 0.5)
+x <- c(5, 0, 5)
+x <- c(1, 2, 2)
+
+#1 is largest
+if (x[1] > x[2] && x[2] > x[3]) {
+  answer <- x[c(3, 2, 1)]  
+} else if (x[1] > x[3] && x[3] > x[2]) {
+  answer <- x[c(2, 3, 1)]
+} else if (x[1] > x[2] && x[2] == x[3]) {
+  answer <- x[c(2, 3, 1)]
+  
+#2 is largest
+} else if (x[2] > x[1] && x[1] > x[3]) {
+  answer <- x[c(3, 1, 2)]
+} else if (x[2] > x[3] && x[3] > x[1]) {
+  answer <- x[c(1, 3, 2)]
+} else if (x[2] > x[1] && x[1] == x[3]) {
+  answer <- x[c(1, 3, 2)]
+  
+#3 is largest
+} else if (x[3] > x[2] && x[2] > x[1]) {
+  answer <- x[c(1, 2, 3)]
+} else if (x[3] > x[1] && x[1] > x[2]) {
+  answer <- x[c(2, 1, 3)]
+} else if (x[3] > x[1] && x[1] == x[2]) {
+  answer <- x[c(1, 2, 3)] 
+  
+#equal
+} else if (x[1] == x[2] && x[2] == x[3]) {
+  answer<- x[c(1, 2, 3)]
+
+#largest number is equal to another number 
+} else if (x[1] == x[2] && x[1] > x[3]) {
+  answer <- x[c(3, 2, 1)]
+} else if (x[2] == x[3] && x[2] > x[1]) {
+  answer <- x[c(1, 3, 2)]
+} else if (x[1] == x[3] && x[1] > x[2]) {
+  answer <- x[c(3, 2, 1)]
+    
+} else
+  print("CODE NOT COMPLETE")
+answer
+```
+
